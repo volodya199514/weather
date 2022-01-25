@@ -1,0 +1,39 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Weather",
+        "description": "Weather from API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/weather/{airports}.{format}": {
+            "get": {
+                "tags": [
+                    "Weather"
+                ],
+                "summary": "Get weather info by airports in differnt formats",
+                "operationId": "6062806be04db4866140293520e9165a",
+                "parameters": [
+                    {
+                        "name": "airports",
+                        "in": "path",
+                        "description": "List of airports separated comma"
+                    },
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Format data"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
