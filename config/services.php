@@ -30,6 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'weather_api' => env('WEATHER_API', 'https://tgftp.nws.noaa.gov/data/observations/metar/decoded/')
+    'weather_api' => env('WEATHER_API', 'https://tgftp.nws.noaa.gov/data/observations/metar/decoded/'),
 
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT'),
+    ],
 ];
