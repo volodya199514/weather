@@ -4,11 +4,11 @@ namespace App\Services\FormattingData;
 
 use PDF;
 
-class PdfFormat extends FormattingWeatherData
+class PdfFormat implements FormattingWeatherDataInterface
 {
-    public function getResponse()
+    public function getResponse(array $weatherData)
     {
-        $pdf = PDF::loadView('myPDF', ['weatherData' => $this->weatherData]);
+        $pdf = PDF::loadView('myPDF', ['weatherData' => $weatherData]);
 
         return $pdf->stream();
     }

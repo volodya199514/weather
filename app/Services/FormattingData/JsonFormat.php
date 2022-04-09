@@ -2,10 +2,10 @@
 
 namespace App\Services\FormattingData;
 
-class JsonFormat extends FormattingWeatherData
+class JsonFormat implements FormattingWeatherDataInterface
 {
-    public function getResponse()
+    public function getResponse(array $weatherData)
     {
-        return response()->json($this->weatherData);
+        return response()->json($weatherData);
     }
 }

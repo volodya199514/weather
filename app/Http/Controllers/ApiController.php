@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\FormattingData\FormattingWeatherData;
+use App\Services\FormattingData\FormattingWeatherDataInterface;
+use App\Services\WeatherData\WeatherDataInterface;
 
 /**
  * @OA\Swagger(
@@ -17,6 +18,12 @@ use App\Services\FormattingData\FormattingWeatherData;
  */
 class ApiController extends Controller
 {
+    public function __construct(
+        private FormattingWeatherDataInterface $formattingWeatherData,
+        private WeatherDataInterface $weatherDataService
+    ) {
+    }
+
     /**
      * @OA\Get(
      *     path="/api/weather/{airports}.{format}",
@@ -42,11 +49,11 @@ class ApiController extends Controller
      *     ),
      * )
      */
-    public function index(FormattingWeatherData $formattingWeatherData, string $airports = null, string $format = null)
+    public function index(string $airports = null, string $format = 'html')
     {
-        $formattingWeatherData->setWeatherData($airports);
+        $weatherData = $this->weatherDataService->getWeatherDataByAirports($airports);
 
-        return $formattingWeatherData->getResponse();
+        return $this->formattingWeatherData->getResponse($weatherData);
     }
 }
 

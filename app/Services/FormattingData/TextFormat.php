@@ -2,21 +2,21 @@
 
 namespace App\Services\FormattingData;
 
-class TextFormat extends FormattingWeatherData
+class TextFormat implements FormattingWeatherDataInterface
 {
-    private function getFormattingData(): string
+    public function getResponse(array $weatherData)
+    {
+        return response($this->getFormattingData($weatherData))->header('Content-Type', 'text/plain');
+    }
+
+    private function getFormattingData(array $weatherData): string
     {
         $string = '';
 
-        foreach ($this->weatherData as $key => $airportData) {
+        foreach ($weatherData as $key => $airportData) {
             $string .= "Airport $key ".PHP_EOL.implode(PHP_EOL, $airportData).PHP_EOL.PHP_EOL;
         }
 
         return $string;
-    }
-
-    public function getResponse()
-    {
-        return response($this->getFormattingData())->header('Content-Type', 'text/plain');
     }
 }

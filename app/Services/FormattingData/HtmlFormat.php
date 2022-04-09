@@ -2,10 +2,10 @@
 
 namespace App\Services\FormattingData;
 
-class HtmlFormat extends FormattingWeatherData
+class HtmlFormat implements FormattingWeatherDataInterface
 {
-    public function getResponse()
+    public function getResponse(array $weatherData)
     {
-        return response()->view('myPDF',  ['weatherData' => $this->weatherData]);
+        return response()->view('myPDF',  ['weatherData' => $weatherData]);
     }
 }
