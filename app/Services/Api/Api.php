@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Http;
 
 class Api implements ApiInterface
 {
+    const NOT_SUCCESS_RESPONSE = ["Data for this airport not exists"];
+
     public function getWeatherDataByAirportCode(string $airport): array
     {
         $response =  Http::get(config('services.weather_api').$airport.'.TXT');
@@ -14,6 +16,6 @@ class Api implements ApiInterface
             return preg_split('/\r\n|\r|\n/', $response->body());
         }
 
-        return ["Data for this airport not exists"];
+        return self::NOT_SUCCESS_RESPONSE;
     }
 }
